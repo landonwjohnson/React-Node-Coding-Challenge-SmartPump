@@ -4,7 +4,6 @@ import {
   AvatarDialogActionButton,
   StyledDialogContent,
   StyledDialogActions,
-  StyledDialog,
   UserAvatarImage,
   UserAvatarWrapper,
   AvatarPhotoButton,
@@ -12,12 +11,9 @@ import {
   AvatarImageTile,
   AvatarGrid,
 } from "./styles";
-
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
 import Compressor from "compressorjs";
 import blobToBase64 from "blob-to-base64";
 import { theme } from "../Layout/GlobalStyle";
@@ -26,6 +22,8 @@ import {
   getUserPictureByUserID,
 } from "../../services/user.services";
 import AuthUserContext from "../../context/AuthContext";
+import Dialog from '@material-ui/core/Dialog';
+import SubmittingBackdrop from "../common/SubmittingBackdrop";
 
 function UserAvatar() {
   const { user, setUser } = useContext(AuthUserContext);
@@ -78,8 +76,11 @@ function UserAvatar() {
     updateUserPicture({ userid: user._id, picture: tempPicture })
       .then((res) => {
         if (res.status >= 200) {
-          loadAvatar(true);
-          setSubmitting(false);
+          setTimeout(() => {
+            loadAvatar(true);
+            setSubmitting(false);
+          }, 500);
+      
         }
       })
       .catch((err) => {
@@ -103,7 +104,8 @@ function UserAvatar() {
 
   return (
     <>
-      <StyledDialog onClose={() => setDialogOpened(false)} open={dialogOpened}>
+    {submitting && <SubmittingBackdrop />}
+      <Dialog onClose={() => setDialogOpened(false)} open={dialogOpened}>
         <StyledDialogTitle>
           <Typography>Select or upload a picture</Typography>
           <IconButton onClick={() => setDialogOpened(false)}>
@@ -142,14 +144,14 @@ function UserAvatar() {
             Save chang{submitting ? "ing" : "es"}
           </AvatarDialogActionButton>
         </StyledDialogActions>
-      </StyledDialog>
+      </Dialog>
       <UserAvatarWrapper>
         <UserAvatarImage src={currentPicture} />
         <AvatarPhotoButton onClick={() => setDialogOpened(true)}>
           <StyledPhotoIcon />
         </AvatarPhotoButton>
       </UserAvatarWrapper>
-    </>
+      </>
   );
 }
 

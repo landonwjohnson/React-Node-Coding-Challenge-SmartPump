@@ -9,6 +9,7 @@ const validateReqBody = (data) => {
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
 
+  console.log(data, 'this is data')
   if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
@@ -71,7 +72,7 @@ module.exports = async (req, res, next) => {
         }
       );
     } else {
-      errors.user = "Invalid login information";
+      errors.password = "Invalid login information";
       return res.status(500).json(errors);
     }
   } catch (err) {

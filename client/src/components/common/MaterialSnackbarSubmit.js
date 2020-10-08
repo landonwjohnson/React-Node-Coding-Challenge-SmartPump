@@ -6,39 +6,45 @@ import PropTypes from "prop-types";
 import { device } from "../Layout/GlobalStyle";
 
 const StyledAction = styled.div`
-  width: ${props => props.submitting? 'initial;': '80vw;'};
   position: relative;
-  height: 60px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
 
-  .message-cta-wrapper{
+  .message-cta-wrapper {
     padding-right: 20px;
     padding-left: 20px;
     width: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  
+
     height: inherit;
-    
-    .message{
+
+    .message {
       padding-right: 20px;
       text-align: left;
       color: white;
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    @media ${device.mobileL}{
+    @media ${device.mobileL} {
+      flex-direction: column;
+      padding: 0px;
 
-         .message{
-      font-size: 13px;
+      .message {
+        font-size: 13px;
+        padding-right: 0px;
       }
 
-
       width: 100%;
-      max-width: ${device.mobileL};
     }
+  }
+
+  @media ${device.mobileL} {
+    height: 70px;
+
+    width: 100%;
   }
 `;
 
@@ -53,13 +59,29 @@ const StyledSnackBar = styled(Snackbar)`
     bottom: 0px;
     left: 0px;
   }
+
+  .MuiSnackbarContent-action {
+    margin-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    width: 100%;
+    padding: 15px;
+  }
+
+  @media ${device.mobileL} {
+    padding: 10px;
+  }
 `;
 
 const SubmitButton = styled(Button)`
   color: white !important;
   min-width: 150px !important;
-  background: ${props => props.theme.colors.primary} !important;
-`
+  background: ${(props) => props.theme.colors.primary} !important;
+
+  @media ${device.mobileL} {
+    width: 90%;
+  }
+`;
 
 function MaterialSnackbarSubmit({
   open,
@@ -86,17 +108,21 @@ function MaterialSnackbarSubmit({
       open={open}
       key={vertical + horizontal}
       onClose={handleClose}
-      action={<StyledAction submitting={submitting}>
-        <div className="message-cta-wrapper">
-          <div className={"message"}>
-            {submitting? submittingText: message}
+      action={
+        <StyledAction submitting={submitting}>
+          <div className="message-cta-wrapper">
+            <div className={"message"}>
+              {submitting ? submittingText : message}
+            </div>
+
+            {!submitting && (
+              <SubmitButton onClick={() => callback()}>
+                {submitText}{" "}
+              </SubmitButton>
+            )}
           </div>
-
-
-      {!submitting && <SubmitButton onClick={() => callback()}>{submitText} </SubmitButton>}
-        </div>
-
-      </StyledAction>}
+        </StyledAction>
+      }
     />
   );
 }
@@ -107,7 +133,10 @@ MaterialSnackbarSubmit.defaultProps = {
   submitText: "Submit",
   submittingText: "Submitting",
   submitting: false,
-  callback: () => console.log("no property called callback has been passed down to MaterialSnackbarSubmit.js"),
+  callback: () =>
+    console.log(
+      "no property called callback has been passed down to MaterialSnackbarSubmit.js"
+    ),
   position: {
     vertical: "bottom",
     horizontal: "right",
@@ -115,7 +144,6 @@ MaterialSnackbarSubmit.defaultProps = {
 };
 
 MaterialSnackbarSubmit.propTypes = {
-  
   setOpen: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,

@@ -1,32 +1,27 @@
-import React from 'react';
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const StyledFormControl = styled(FormControl)`
-height: 68px;
-p {
+  height: 68px;
+  p {
     margin-left: 0px;
   }
-`
+`;
 
-const StyledFormHelperText = styled(FormHelperText)`
-
-`
-
-
+const StyledFormHelperText = styled(FormHelperText)``;
 
 const MaterialSelectFormInputGroup = ({
   handleChange,
   size,
   value,
   name,
-  onKeyUp,
+  onOptionSelected,
   options,
   disabled,
   errorText,
@@ -35,51 +30,45 @@ const MaterialSelectFormInputGroup = ({
   variant,
   error,
 }) => {
-
-
-    const renderOptions = options.map((option, index) =><MenuItem value={option.value}><em>{option.label? option.label : option.value}</em></MenuItem>)
-    return(
-    <>
-    <StyledFormControl 
-        size={size}
-        variant={variant}
-
-    >
-    <InputLabel id={`label${name}`}>{name}</InputLabel>
-    <Select
-      labelId={`label${name}`}
-      id={`${name}SelectField`}
-
-      value={value}
-      onChange={handleChange}
-
-
-      disabled={disabled}
-
-      value={value}
-      type={type}
-      onKeyUp={onKeyUp}
-      error={error}
-    >
-     
-      {renderOptions}
-      
-    </Select>
-    {errorText ? <StyledFormHelperText>errorText</StyledFormHelperText>  : helperText ? <StyledFormHelperText>{helperText}</StyledFormHelperText>: ""}
-
-  </StyledFormControl>
- 
-  </>
-)}
+  const renderOptions = options.map((option, index) => (
+    <MenuItem onClick={() => onOptionSelected()} value={option.value}>
+      <em>{option.label ? option.label : option.value}</em>
+    </MenuItem>
+  ));
+  return (
+      <StyledFormControl size={size} variant={variant}>
+        <InputLabel id={`label${name}`}>{name}</InputLabel>
+        <Select
+          labelId={`label${name}`}
+          id={`${name}SelectField`}
+          value={value}
+          onChange={handleChange}
+          disabled={disabled}
+          value={value}
+          type={type}
+          error={error}
+        >
+          {renderOptions}
+        </Select>
+        {errorText ? (
+          <StyledFormHelperText>errorText</StyledFormHelperText>
+        ) : helperText ? (
+          <StyledFormHelperText>{helperText}</StyledFormHelperText>
+        ) : (
+          ""
+        )}
+      </StyledFormControl>
+  );
+};
 
 MaterialSelectFormInputGroup.propTypes = {
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-            label: PropTypes.string
-        })
-    ),
-  onKeyUp: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })
+  ),
+  onOptionSelected: PropTypes.func,
   handleChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
@@ -93,7 +82,9 @@ MaterialSelectFormInputGroup.propTypes = {
 };
 
 MaterialSelectFormInputGroup.defaultProps = {
-  handleChange: () => console.log("MaterialFormInputGroup has no prop of handleChange"),
+  onOptionSelected: () => console.log("MaterialFormInputGroup has no prop of onOptionSelected"),
+  handleChange: () =>
+    console.log("MaterialFormInputGroup has no prop of handleChange"),
   name: "name_of_input",
   disabled: false,
   value: null,
@@ -104,11 +95,11 @@ MaterialSelectFormInputGroup.defaultProps = {
   type: "text",
   variant: "standard",
   options: [
-      {
-          label: "label",
-          value: "value"
-      }
-  ]
+    {
+      label: "label",
+      value: "value",
+    },
+  ],
 };
 
 export default MaterialSelectFormInputGroup;

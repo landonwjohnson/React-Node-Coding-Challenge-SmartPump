@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import Button from '@material-ui/core/Button';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { device } from "../Layout/GlobalStyle";
@@ -48,7 +46,7 @@ export const UserCard = styled.div`
     padding-top: 20px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 15px;
+    grid-gap: 10px;
   }
 
   @media ${device.mobileL}{
@@ -57,8 +55,8 @@ export const UserCard = styled.div`
 `;
 
 export const UserAvatarImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   border-radius: 75px;
   object-fit: cover;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.1);
@@ -79,9 +77,8 @@ export const AvatarPhotoButton = styled(IconButton)`
 
 export const UserAvatarWrapper = styled.div`
   display: block;
-  width: 150px;
   position: relative;
-  height: 150px;
+  height: 100px;
 `;
 
 export const StyledPhotoIcon = styled(AddAPhotoIcon)`
@@ -149,10 +146,7 @@ export const StyledDialogActions = styled(MuiDialogActions)`
     justify-content: space-between;
 `
 
-export const StyledDialog = styled(Dialog)`
 
-
-`
 
 export const StyledDialogTitle = styled.div`
   display: flex;

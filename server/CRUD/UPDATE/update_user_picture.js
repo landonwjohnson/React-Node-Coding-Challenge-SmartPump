@@ -34,7 +34,6 @@ module.exports = async (req, res, next) => {
         picture: req.body.picture,
       };
 
-      console.log(payload, "this is payload");
       let updatedUser = DB.get("users")
         .find({ _id: req.user._id })
         .assign(payload)

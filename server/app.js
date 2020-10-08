@@ -16,4 +16,4 @@ app.listen(PORT, (err) => {
   console.log(`ready at http://localhost:${PORT}`);
 });
 
-// module.exports = app;
+module.exports = app;

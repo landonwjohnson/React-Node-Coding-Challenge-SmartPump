@@ -4,13 +4,12 @@
   "description": "The savvy cats over at SMART Pump would like to be able to allow users to login to their account, check their balance and update their personal details. Write a simple web application (API and UI) using node.js and lowdb that lets users accomplish those tasks.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:client": "cd ./api && npm run start",
-    "start:api": "cd ./api && node api.js",
-    "install:api": "cd ./api && npm install",
+    "start:client": "cd ./client && npm run start",
+    "start:server": "cd ./server && node ./bin/www",
+    "install:server": "cd ./server && npm install",
     "install:client": "cd ./client && npm install",
-    "install:all": "npm install && npm run install:api && npm run install:client",
-    "start": "concurrently \"npm run start:api\" \"npm run start:client\""
+    "install:all": "npm install && npm run install:server && npm run install:client",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "",
   "license": "ISC",
