@@ -21,9 +21,6 @@ function UserAccount() {
   const { user: currentUser, setUser: setCurrentUser } = useContext(
     AuthUserContext
   );
-  const {
-    name: { first, last },
-  } = currentUser;
   const [submitting, setSubmitting] = useState(false);
   const [user, setUser] = useState(defaultUserJson);
   const [saveChangesSnackBarOpened, setSaveChangesSnackBarOpened] = useState(

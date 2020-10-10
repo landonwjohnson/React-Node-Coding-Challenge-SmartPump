@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import blueAvatar from '../../images/avatars/blue-avatar.svg'
 import purpleAvatar from '../../images/avatars/purple-avatar.svg'
 import orangeAvatar from '../../images/avatars/orange-avatar.svg'

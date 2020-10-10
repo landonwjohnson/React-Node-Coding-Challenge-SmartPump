@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {BreakpointMobile } from "../GlobalStyle";
 
 
 export const BareContainer = styled.div`

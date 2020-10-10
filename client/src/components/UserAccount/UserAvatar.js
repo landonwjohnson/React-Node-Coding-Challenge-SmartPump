@@ -26,7 +26,7 @@ import Dialog from '@material-ui/core/Dialog';
 import SubmittingBackdrop from "../common/SubmittingBackdrop";
 
 function UserAvatar() {
-  const { user, setUser } = useContext(AuthUserContext);
+  const { user } = useContext(AuthUserContext);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const pictureRef = useRef(null);

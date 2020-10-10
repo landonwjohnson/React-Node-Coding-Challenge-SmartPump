@@ -6,7 +6,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const StyledBackdrop = styled(Backdrop)`
   z-index: 10000 !important;
   color: white;
-
 `;
 
 function SubmittingBackdrop() {
