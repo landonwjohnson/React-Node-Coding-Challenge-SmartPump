@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path')
 // const connectDB = require("./config/db");
 const useMiddleware = require("./middleware/useMiddleware");
 const delegateRoutesFor = require("./routes");
@@ -9,6 +10,8 @@ const app = express();
 
 useMiddleware(app);
 delegateRoutesFor(app);
+
+
 
 app.listen(PORT, (err) => {
   if (err) throw err;
