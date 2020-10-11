@@ -27,6 +27,7 @@
     "react-scripts": "3.4.1",
     "styled-components": "^5.2.0"
   },
+  "proxy": "http://localhost:5000",
   "browserslist": {
     "production": [
       ">0.2%",
